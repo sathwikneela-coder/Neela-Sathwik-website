@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Sathwik Neela</title>
+    <meta name="description" content="Learn more about Sathwik Neela, a professional Graphic Designer, Cinematic Video Editor, and AI Prompt Engineer based in Hyderabad.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), var(--bg-primary));
+        }
+
+        .page-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Story Grid */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .story-content p {
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .story-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--bg-secondary);
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px; width: 100%; height: 100%;
+            border: 2px solid var(--accent-gold);
+            border-radius: 20px;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .story-image:hover::after {
+            top: 10px; left: 10px;
+        }
+
+        /* Tools & Skills */
+        .tools-section {
+            background: var(--bg-secondary);
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .tool-card {
+            padding: 2rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--text-primary);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s ease;
+        }
+
+        .tool-card:hover .tool-icon {
+            color: var(--accent-gold);
+            transform: rotateY(360deg) scale(1.2);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--glass-border);
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: 45%;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            border: 4px solid var(--bg-primary);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+            z-index: 1;
+        }
+
+        .timeline-date {
+            color: var(--accent-gold);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Philosophy */
+        .philosophy-banner {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .philosophy-banner i {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        @media (max-width: 768px) {
+            .story-grid { grid-template-columns: 1fr; }
+            .timeline::before { left: 20px; }
+            .timeline-item { flex-direction: column !important; align-items: flex-start; padding-left: 50px; }
+            .timeline-content { width: 100%; }
+            .timeline-dot { left: 20px; }
+        }
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader"><div class="preloader-logo">SATHWIK.</div><div class="preloader-progress"><div class="preloader-bar"></div></div></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">The Creative <span>Mind</span></h1>
+            <p class="page-subtitle">Passionate about storytelling through pixels, vectors, and cinematic frames.</p>
+        </div>
+    </header>
+
+    <!-- Personal Story -->
+    <section class="section">
+        <div class="container story-grid">
+            <div class="story-content reveal">
+                <h2 style="font-size: 2rem; margin-bottom: 1.5rem;">My Journey into Design</h2>
+                <p>I am a creative graphic designer and video editor who helps bring ideas to life through design and visual storytelling. I continuously explore new tools, trends, and AI technologies to improve my work. I enjoy challenges and believe in constant learning and growth.</p>
+                <a href="contact.html" class="btn btn-primary" style="margin-top: 1rem;">Let's Work Together</a>
+            </div>
+            <div class="story-image reveal">
+                <img src="My image/My self.png" alt="Sathwik Neela" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Skills -->
+    <section class="section tools-section">
+        <div class="container">
+            <h2 class="section-title reveal">Tools Software & <span>Skills</span></h2>
+            <div class="tools-grid">
+                <div class="glass-card tool-card reveal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" class="tool-icon" style="width: 2.5rem; height: 2.5rem;" fill="currentColor"><path d="M22.666 1.6C10.133 1.6 0 11.734 0 24.268v79.464C0 116.266 10.133 126.4 22.666 126.4h82.668c12.533 0 22.666-10.134 22.666-22.668V24.268C128 11.734 117.867 1.6 105.334 1.6H22.666zm23.201 31.734c4.373 0 8 .532 10.986 1.652A19.05 19.05 0 0 1 64 39.361a16.976 16.976 0 0 1 3.894 6.079c.8 2.24 1.225 4.533 1.225 6.933 0 4.587-1.066 8.373-3.2 11.36-2.132 2.986-5.118 5.227-8.585 6.507-3.627 1.334-7.627 1.813-12 1.813-1.28 0-2.135 0-2.668-.053-.533-.053-1.28-.053-2.293-.053v17.12c.053.373-.213.694-.586.747H29.44c-.426 0-.638-.215-.638-.695V34.24c0-.373.16-.588.533-.588.907 0 1.76 0 2.986-.052 1.28-.054 2.613-.052 4.053-.106 1.44-.053 2.987-.054 4.64-.107 1.654-.054 3.254-.053 4.854-.053zm1.19 10.504a18.68 18.68 0 0 0-.817.002c-1.386 0-2.613.001-3.627.055-1.066-.054-1.812-.001-2.185.052v17.92c.746.054 1.438.106 2.078.106h2.828c2.08 0 4.16-.32 6.133-.96 1.707-.48 3.2-1.494 4.373-2.827 1.12-1.334 1.654-3.146 1.654-5.493a8.776 8.776 0 0 0-1.226-4.746c-.907-1.386-2.188-2.454-3.735-3.04-1.727-.7-3.576-1.033-5.476-1.07zm44.73 2.723c2.187 0 4.427.158 6.613.478 1.6.213 3.146.642 4.586 1.229.214.053.427.265.533.478.054.213.108.427.108.64v8.694a.655.655 0 0 1-.266.533c-.48.107-.747.107-.96 0-1.6-.853-3.308-1.439-5.122-1.812-1.973-.427-3.946-.695-5.972-.695-1.067-.054-2.188.108-3.201.374-.694.16-1.28.534-1.653 1.067-.266.427-.426.96-.426 1.44s.214.96.534 1.386c.48.587 1.119 1.068 1.812 1.442a48.8 48.8 0 0 0 3.787 1.757c2.88.96 5.653 2.295 8.213 3.895 1.76 1.12 3.2 2.614 4.213 4.427a11.509 11.509 0 0 1 1.228 5.493 12.412 12.412 0 0 1-2.082 7.093 13.362 13.362 0 0 1-5.972 4.746c-2.614 1.12-5.814 1.707-9.654 1.707-2.454 0-4.852-.213-7.252-.693a21.51 21.51 0 0 1-5.44-1.707c-.373-.213-.641-.587-.588-1.014V78.24c0-.16.053-.374.213-.48.16-.107.32-.052.48.054a22.83 22.83 0 0 0 6.614 2.614c2.027.533 4.161.799 6.295.799 2.026 0 3.466-.267 4.426-.747.853-.373 1.439-1.28 1.439-2.24 0-.746-.426-1.441-1.28-2.135-.853-.693-2.613-1.492-5.226-2.505a32.638 32.638 0 0 1-7.574-3.84 13.81 13.81 0 0 1-4.053-4.533 11.44 11.44 0 0 1-1.226-5.44c0-2.293.639-4.48 1.812-6.453 1.333-2.133 3.308-3.84 5.602-4.906 2.506-1.28 5.652-1.867 9.44-1.867z"/></svg>
+                    <h4>Photoshop</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Photo Editing</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-pen-nib tool-icon"></i>
+                    <h4>Illustrator</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Vector Graphics</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-film tool-icon"></i>
+                    <h4>After Effects</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Motion & VFX</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-video tool-icon"></i>
+                    <h4>Premiere Pro</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Video Editing</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-palette tool-icon"></i>
+                    <h4>Canva</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Design Layout</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fab fa-figma tool-icon"></i>
+                    <h4>Figma</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">UI/UX Design</span>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-robot tool-icon"></i>
+                    <h4>AI Prompting</h4>
+                    <span style="color:var(--text-secondary); font-size: 0.9rem;">Engineering</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title reveal">My <span>Experience</span></h2>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">Feb 2026 – Present</div>
+                        <h3>Graphic Designer</h3>
+                        <div style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 0.5rem;">Aim-UnitedGlobal</div>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Creating high-quality visual content and digital designs.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">Aug 2022 – Jan 2026</div>
+                        <h3>Graphic Designer</h3>
+                        <div style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 0.5rem;">Flick Maps Pvt Ltd</div>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Worked on mapping projects for North American clients using Photoshop and Illustrator.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">July 2021 – March 2022</div>
+                        <h3>Video Editor</h3>
+                        <div style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 0.5rem;">Anagha Career Solutions</div>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Edited interview videos, reels, and promotional content.</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">Dec 2019 – May 2020</div>
+                        <h3>Graphic Designer</h3>
+                        <div style="color: var(--accent-gold); font-size: 0.9rem; margin-bottom: 0.5rem;">Digital Brandlance</div>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Designed flyers, posters, brochures, logos, and video ads.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title reveal" style="margin-top: 5rem;">My <span>Education</span></h2>
+            <div class="timeline">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">Present</div>
+                        <h3>Masters in Digital Marketing (78%)</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">KL University, Hyderabad</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2023</div>
+                        <h3>BA Graduation (78%)</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Success Degree College, Armoor</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2020</div>
+                        <h3>Graphic Designing (75%)</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Arena Institute of Animation, Dilsukhnagar</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2017</div>
+                        <h3>Intermediate (55%)</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Kshatriya Junior College, Armoor</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-date">2015</div>
+                        <h3>SSC (68%)</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Akshara Ganga High School</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title reveal" style="margin-top: 5rem;">My <span>Hobbies</span></h2>
+            <div class="tools-grid" style="margin-bottom: 2rem;">
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-film tool-icon"></i>
+                    <h4>Movies</h4>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-hands-helping tool-icon"></i>
+                    <h4>Volunteering</h4>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-plane tool-icon"></i>
+                    <h4>Travelling</h4>
+                </div>
+                <div class="glass-card tool-card reveal">
+                    <i class="fas fa-puzzle-piece tool-icon"></i>
+                    <h4>Puzzles</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creative Philosophy -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="philosophy-banner reveal">
+                <i class="fas fa-quote-right"></i>
+                <h2>"Design is not just what it looks like and feels like. Design is how it works."</h2>
+                <p style="color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px;">- Steve Jobs (My Guiding Principle)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

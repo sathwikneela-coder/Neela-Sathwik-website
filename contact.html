@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Sathwik Neela</title>
+    <meta name="description" content="Get in touch with Sathwik Neela for professional brand identity design, social media kits, web designs, and cinematic video editing.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), var(--bg-primary));
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            color: var(--accent-gold);
+        }
+
+        .contact-text h4 {
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-text span {
+            color: var(--text-secondary);
+        }
+
+        /* Form Styles */
+        .contact-form {
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            font-weight: 500;
+            text-align: center;
+            min-height: 24px;
+        }
+
+        /* ── WATERCOLOR 3D GLASS CARD ─────────────────────────── */
+        .contact-glass-card {
+            position: relative;
+            /* Visible coloured tint so the glass has personality */
+            background: linear-gradient(
+                135deg,
+                rgba(106, 0, 244, 0.12) 0%,
+                rgba(0, 225, 255, 0.07) 50%,
+                rgba(106, 0, 244, 0.10) 100%
+            );
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            /* NO overflow:hidden — it kills ::before blobs AND 3D tilt */
+            transform: perspective(1200px) rotateX(0deg) rotateY(0deg);
+            transition: transform 0.15s ease-out, box-shadow 0.4s ease;
+            border: 1px solid rgba(0, 225, 255, 0.22);
+            box-shadow:
+                0 8px 48px rgba(0, 0, 0, 0.6),
+                0 0 24px rgba(106, 0, 244, 0.18),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        /* Animated iridescent watercolor blobs — inset:0 so they stay inside */
+        .contact-glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background:
+                radial-gradient(ellipse 70% 60% at 15% 20%,  rgba(106, 0, 244, 0.50) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 70% at 85% 10%,  rgba(0, 225, 255, 0.42) 0%, transparent 60%),
+                radial-gradient(ellipse 65% 55% at 55% 85%,  rgba(212, 175, 55, 0.35) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 65% at 5%  75%,  rgba(255, 0, 122, 0.38) 0%, transparent 60%);
+            animation: watercolorShift 8s ease-in-out infinite alternate;
+            z-index: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+        }
+
+        /* Reflective shimmer sweep */
+        .contact-glass-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            background: linear-gradient(
+                125deg,
+                rgba(255, 255, 255, 0.00) 0%,
+                rgba(255, 255, 255, 0.00) 35%,
+                rgba(255, 255, 255, 0.10) 50%,
+                rgba(255, 255, 255, 0.00) 65%,
+                rgba(255, 255, 255, 0.00) 100%
+            );
+            background-size: 300% 300%;
+            animation: shimmerSweep 4s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .contact-glass-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes watercolorShift {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+
+            33% {
+                transform: rotate(8deg) scale(1.05);
+            }
+
+            66% {
+                transform: rotate(-6deg) scale(0.97);
+            }
+
+            100% {
+                transform: rotate(4deg) scale(1.03);
+            }
+        }
+
+        @keyframes shimmerSweep {
+            0%   { background-position: 0%   0%;   opacity: 0.4; }
+            50%  { background-position: 100% 100%; opacity: 1;   }
+            100% { background-position: 0%   0%;   opacity: 0.4; }
+        }
+
+        .contact-glass-card:hover {
+            border-color: rgba(0, 225, 255, 0.40);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.70),
+                0 0 40px rgba(0, 225, 255, 0.20),
+                0 0 80px rgba(106, 0, 244, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        }
+
+        /* Contact form inner labels visible contrast */
+        .contact-glass-card .form-group label {
+            color: rgba(240, 242, 245, 0.85);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+
+
+        @media (max-width: 768px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader">
+        <div class="preloader-logo">SATHWIK.</div>
+        <div class="preloader-progress">
+            <div class="preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">Let's <span>Connect</span></h1>
+            <p class="page-subtitle">Ready to start your next project? Get in touch and let's craft something amazing.
+            </p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container contact-container">
+
+            <!-- Info Side -->
+            <div class="contact-info reveal">
+                <h2>Let's bring your ideas to life.</h2>
+                <p>Whether you need a full brand overhaul, a striking UI/UX design, or a cinematic video that demands
+                    attention, I'm ready to help you achieve your goals.</p>
+
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <span><a href="mailto:sathwik.neela@gmail.com" style="color: inherit; text-decoration: none;">sathwik.neela@gmail.com</a></span>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <span><a href="tel:+919110707247" style="color: inherit; text-decoration: none;">+91 91107 07247</a></span>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="contact-text">
+                        <h4>Location</h4>
+                        <span>Hyderabad, Telangana</span>
+                    </div>
+                </div>
+
+                <div class="social-links" style="justify-content: flex-start; margin-top: 1rem;">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-behance"></i></a>
+                    <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                    <a href="https://www.linkedin.com/in/sathwik-neela-252815163/" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+
+            <!-- Form Side -->
+            <div class="contact-glass-card contact-form reveal">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" class="form-control" placeholder="Enter your email address">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" class="form-control"
+                            placeholder="Tell me about your project..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    <div id="form-message" class="form-message"></div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        (function () {
+            // ── 3D WATERCOLOR TILT on the glass card ────────────────
+            document.addEventListener('DOMContentLoaded', () => {
+                const card = document.querySelector('.contact-glass-card');
+                if (!card) return;
+
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const cx = rect.left + rect.width / 2;
+                    const cy = rect.top  + rect.height / 2;
+                    const dx = (e.clientX - cx) / (rect.width  / 2);
+                    const dy = (e.clientY - cy) / (rect.height / 2);
+
+                    card.style.transform =
+                        `perspective(1200px) rotateX(${dy * -10}deg) rotateY(${dx * 12}deg) scale3d(1.02,1.02,1.02)`;
+                    card.style.setProperty('--blob-x', (dx * 8) + 'px');
+                    card.style.setProperty('--blob-y', (dy * 8) + 'px');
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+                    card.style.setProperty('--blob-x', '0px');
+                    card.style.setProperty('--blob-y', '0px');
+                });
+            });
+        })();
+    </script>
+</body>
+
+</html>

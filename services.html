@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Sathwik Neela</title>
+    <meta name="description" content="Discover premium graphic design and cinematic video editing services by Sathwik Neela, including brand identity, social kits, web design, color grading, and motion graphics.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), var(--bg-primary));
+        }
+
+        .service-category {
+            margin-bottom: 5rem;
+        }
+
+        .service-category-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-desc {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-benefits {
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .service-benefits li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .service-benefits li i {
+            color: var(--accent-gold);
+            font-size: 0.8rem;
+        }
+
+        /* Modal & Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: flex;
+            opacity: 1;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        .modal-content {
+            background: var(--bg-primary);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 480px;
+            height: auto;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            margin: auto;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            font-weight: 300;
+            cursor: pointer;
+            transition: var(--transition);
+            line-height: 1;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-gold);
+        }
+
+        .modal-header h2 {
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+            font-size: 1.4rem;
+        }
+
+        .modal-header p {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        /* Custom scrollbar for modal overlay */
+        .modal::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        .modal::-webkit-scrollbar-thumb {
+            background: var(--accent-gold);
+            border-radius: 10px;
+        }
+        .modal::-webkit-scrollbar-thumb:hover {
+            background: #fff;
+        }
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader"><div class="preloader-logo">SATHWIK.</div><div class="preloader-progress"><div class="preloader-bar"></div></div></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">My <span>Services</span></h1>
+            <p class="page-subtitle">Providing end-to-end creative solutions across graphic design and cinematic video
+                production.</p>
+        </div>
+    </header>
+
+    <!-- Graphic Design Services -->
+    <section class="section service-category">
+        <div class="container">
+            <h2 class="service-category-title reveal">Graphic Design</h2>
+            <div class="service-grid">
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-fingerprint service-icon"></i>
+                        <h3 class="service-title">Brand Identity</h3>
+                        <p class="service-desc">Crafting memorable logos, color palettes, and typography rules that
+                            define your business and resonate with your target audience.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> Custom Logo Design</li>
+                            <li><i class="fas fa-check"></i> Brand Guidelines</li>
+                            <li><i class="fas fa-check"></i> Visual Storytelling</li>
+                        </ul>
+                    </div>
+                    <button onclick="openQuoteModal()" class="btn btn-outline"
+                        style="width: 100%; text-align: center; border-radius: 30px; font-family: inherit; font-size: 0.9rem;">REQUEST
+                        QUOTE</button>
+                </div>
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-hashtag service-icon"></i>
+                        <h3 class="service-title">Social Media Kits</h3>
+                        <p class="service-desc">Eye-catching posts, stories, and cover images optimized for engagement
+                            across all major social media platforms.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> High Engagement Designs</li>
+                            <li><i class="fas fa-check"></i> Platform Optimization</li>
+                            <li><i class="fas fa-check"></i> Campaign Assets</li>
+                        </ul>
+                    </div>
+                    <button onclick="openSocialModal()" class="btn btn-outline"
+                        style="width: 100%; text-align: center; border-radius: 30px; font-family: inherit; font-size: 0.9rem;">REQUEST
+                        QUOTE</button>
+                </div>
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-laptop-code service-icon"></i>
+                        <h3 class="service-title">Web Designing</h3>
+                        <p class="service-desc">Designing modern, responsive websites that deliver seamless user
+                            experiences across all devices using the latest web technologies and design tools.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> Website Layout Design</li>
+                            <li><i class="fas fa-check"></i> Responsive Design (Mobile-Friendly)</li>
+                            <li><i class="fas fa-check"></i> UI Styling &amp; Visual Design</li>
+                        </ul>
+                    </div>
+                    <button onclick="openWebModal()" class="btn btn-outline"
+                        style="width: 100%; text-align: center; border-radius: 30px; font-family: inherit; font-size: 0.9rem;">REQUEST
+                        QUOTE</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Editing Services -->
+    <section class="section service-category" style="background: var(--bg-secondary); margin-bottom: 0;">
+        <div class="container">
+            <h2 class="service-category-title reveal">Cinematic Video</h2>
+            <div class="service-grid">
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-film service-icon"></i>
+                        <h3 class="service-title">Commercial Editing</h3>
+                        <p class="service-desc">High-end video editing for commercials, product launches, and brand
+                            anthems that convert viewers into customers.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> Dynamic Cuts</li>
+                            <li><i class="fas fa-check"></i> Seamless Transitions</li>
+                            <li><i class="fas fa-check"></i> Story-driven Flow</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Request
+                        Quote</a>
+                </div>
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-palette service-icon"></i>
+                        <h3 class="service-title">Color Grading</h3>
+                        <p class="service-desc">Professional color correction and grading to give your footage that
+                            premium, cinematic Hollywood look.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> Look Development</li>
+                            <li><i class="fas fa-check"></i> Shot Matching</li>
+                            <li><i class="fas fa-check"></i> Mood Enhancement</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Request
+                        Quote</a>
+                </div>
+
+                <div class="glass-card service-card reveal">
+                    <div>
+                        <i class="fas fa-music service-icon"></i>
+                        <h3 class="service-title">Sound & Motion</h3>
+                        <p class="service-desc">Adding life to your videos with professional sound design, mixing, and
+                            striking motion graphics/VFX.</p>
+                        <ul class="service-benefits">
+                            <li><i class="fas fa-check"></i> Audio Sweetening</li>
+                            <li><i class="fas fa-check"></i> 2D/3D Motion Titles</li>
+                            <li><i class="fas fa-check"></i> VFX Compositing</li>
+                        </ul>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline" style="width: 100%; text-align: center;">Request
+                        Quote</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Brand Identity Quote Modal -->
+    <div id="quoteModal" class="modal" data-lenis-prevent>
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeQuoteModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Request a Brand Identity Quote</h2>
+                <p>Let's build a strong and memorable brand for your business.<br>Share a few details below, and we'll
+                    create a customized quote tailored to your vision.</p>
+            </div>
+            <form id="quote-form">
+                <div class="form-group">
+                    <label for="quote-name">Your Name</label>
+                    <input type="text" id="quote-name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quote-email">Your Email</label>
+                    <input type="email" id="quote-email" class="form-control" placeholder="Enter your email address"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="quote-phone">Your Phone Number</label>
+                    <input type="tel" id="quote-phone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="quote-brand">Brand / Business Name</label>
+                    <input type="text" id="quote-brand" class="form-control"
+                        placeholder="Enter your brand or company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quote-details">Project Details</label>
+                    <textarea id="quote-details" class="form-control"
+                        placeholder="Tell us about your brand, goals, and what you need (logo, guidelines, visual style, etc.)"
+                        required></textarea>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem; text-align:center;">Your
+                    information is safe with us and will only be used to respond to your request.</p>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Get My Brand Quote</button>
+                <div id="quote-message" style="text-align:center; font-weight:500; margin-top:0.5rem; min-height:20px;">
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); text-align:center; margin-top:1rem;">We'll get
+                    back to you within 24-48 hours with the next steps.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Social Media Kit Quote Modal -->
+    <div id="socialModal" class="modal" data-lenis-prevent>
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeSocialModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Request a Social Media Kit Quote</h2>
+                <p>Let's elevate your brand's presence on social media.<br>Share a few details below, and we'll create a
+                    customized quote tailored to your needs.</p>
+            </div>
+            <form id="social-form">
+                <div class="form-group">
+                    <label for="social-name">Your Name</label>
+                    <input type="text" id="social-name" class="form-control" placeholder="Enter your full name"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="social-email">Your Email</label>
+                    <input type="email" id="social-email" class="form-control" placeholder="Enter your email address"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="social-phone">Your Phone Number</label>
+                    <input type="tel" id="social-phone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="social-brand">Brand / Business Name</label>
+                    <input type="text" id="social-brand" class="form-control"
+                        placeholder="Enter your brand or company name" required>
+                </div>
+                <div class="form-group">
+                    <label for="social-marketing">Do you also need Digital Marketing Services?</label>
+                    <select id="social-marketing" class="form-control" required
+                        style="appearance: auto; background-color: rgba(255, 255, 255, 0.05); color: var(--text-secondary);">
+                        <option value="" disabled selected>Select Yes / No</option>
+                        <option value="Yes" style="background: var(--bg-primary); color: #fff;">Yes</option>
+                        <option value="No" style="background: var(--bg-primary); color: #fff;">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="social-details">Project Details</label>
+                    <textarea id="social-details" class="form-control"
+                        placeholder="Tell us about your requirements (post designs, templates, reels, ads, platforms, etc.)"
+                        required></textarea>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem; text-align:center;">Your
+                    information is safe with us and will only be used to respond to your request.</p>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Get My Social Media Quote</button>
+                <div id="social-message"
+                    style="text-align:center; font-weight:500; margin-top:0.5rem; min-height:20px;"></div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); text-align:center; margin-top:1rem;">We'll get
+                    back to you within 24-48 hours with the next steps.</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Web Design Quote Modal -->
+    <div id="webModal" class="modal" data-lenis-prevent>
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeWebModal()">&times;</span>
+            <div class="modal-header">
+                <h2>Request a Web Design Quote</h2>
+                <p>Let's create a modern, responsive website for your business.<br>Share a few details below, and we'll
+                    provide a customized quote tailored to your needs.</p>
+            </div>
+            <form id="web-form">
+                <div class="form-group">
+                    <label for="web-name">Your Name</label>
+                    <input type="text" id="web-name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="web-email">Your Email</label>
+                    <input type="email" id="web-email" class="form-control" placeholder="Enter your email address"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="web-phone">Your Phone Number</label>
+                    <input type="tel" id="web-phone" class="form-control" placeholder="Enter your phone number"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label for="web-brand">Business / Website Name</label>
+                    <input type="text" id="web-brand" class="form-control"
+                        placeholder="Enter your business or website name" required>
+                </div>
+                <div class="form-group">
+                    <label for="web-type">Type of Website</label>
+                    <input type="text" id="web-type" class="form-control"
+                        placeholder="(e.g., Portfolio, Business, E-commerce, Landing Page)" required>
+                </div>
+                <div class="form-group">
+                    <label for="web-pages">Number of Pages</label>
+                    <input type="text" id="web-pages" class="form-control"
+                        placeholder="(e.g., 1 page, 5 pages, 10+ pages)" required>
+                </div>
+                <div class="form-group">
+                    <label for="web-responsive">Do you need Responsive (Mobile-Friendly) Design?</label>
+                    <select id="web-responsive" class="form-control" required
+                        style="appearance: auto; background-color: rgba(255, 255, 255, 0.05); color: var(--text-secondary);">
+                        <option value="" disabled selected>Select Yes / No</option>
+                        <option value="Yes" style="background: var(--bg-primary); color: #fff;">Yes</option>
+                        <option value="No" style="background: var(--bg-primary); color: #fff;">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="web-styling">Do you need UI Styling & Visual Design?</label>
+                    <select id="web-styling" class="form-control" required
+                        style="appearance: auto; background-color: rgba(255, 255, 255, 0.05); color: var(--text-secondary);">
+                        <option value="" disabled selected>Select Yes / No</option>
+                        <option value="Yes" style="background: var(--bg-primary); color: #fff;">Yes</option>
+                        <option value="No" style="background: var(--bg-primary); color: #fff;">No</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="web-details">Project Details</label>
+                    <textarea id="web-details" class="form-control"
+                        placeholder="Tell us about your requirements, features, design style, or references"
+                        required></textarea>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem; text-align:center;">Your
+                    information is safe with us and will only be used to respond to your request.</p>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Get My Web Design Quote</button>
+                <div id="web-message" style="text-align:center; font-weight:500; margin-top:0.5rem; min-height:20px;">
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-secondary); text-align:center; margin-top:1rem;">We'll get
+                    back to you within 24-48 hours with the next steps.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        const quoteModal = document.getElementById('quoteModal');
+        const quoteForm = document.getElementById('quote-form');
+        const quoteMessage = document.getElementById('quote-message');
+
+        function openQuoteModal() {
+            quoteModal.style.display = 'flex';
+            // Slight delay to allow display flex to apply before opacity transition
+            setTimeout(() => { quoteModal.classList.add('show'); }, 10);
+            document.body.style.overflow = 'hidden'; // prevent scrolling
+            if (typeof lenis !== 'undefined') lenis.stop(); // Stop Lenis smooth scroll
+        }
+
+        function closeQuoteModal() {
+            quoteModal.classList.remove('show');
+            setTimeout(() => {
+                quoteModal.style.display = 'none';
+                quoteForm.reset();
+                quoteMessage.textContent = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+            if (typeof lenis !== 'undefined') lenis.start(); // Resume Lenis smooth scroll
+        }
+
+        const socialModal = document.getElementById('socialModal');
+        const socialForm = document.getElementById('social-form');
+        const socialMessage = document.getElementById('social-message');
+
+        function openSocialModal() {
+            socialModal.style.display = 'flex';
+            setTimeout(() => { socialModal.classList.add('show'); }, 10);
+            document.body.style.overflow = 'hidden';
+            if (typeof lenis !== 'undefined') lenis.stop(); // Stop Lenis smooth scroll
+        }
+
+        function closeSocialModal() {
+            socialModal.classList.remove('show');
+            setTimeout(() => {
+                socialModal.style.display = 'none';
+                socialForm.reset();
+                socialMessage.textContent = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+            if (typeof lenis !== 'undefined') lenis.start(); // Resume Lenis smooth scroll
+        }
+
+        const webModal = document.getElementById('webModal');
+        const webForm = document.getElementById('web-form');
+        const webMessage = document.getElementById('web-message');
+
+        function openWebModal() {
+            webModal.style.display = 'flex';
+            setTimeout(() => { webModal.classList.add('show'); }, 10);
+            document.body.style.overflow = 'hidden';
+            if (typeof lenis !== 'undefined') lenis.stop(); // Stop Lenis smooth scroll
+        }
+
+        function closeWebModal() {
+            webModal.classList.remove('show');
+            setTimeout(() => {
+                webModal.style.display = 'none';
+                webForm.reset();
+                webMessage.textContent = '';
+            }, 300);
+            document.body.style.overflow = 'auto';
+            if (typeof lenis !== 'undefined') lenis.start(); // Resume Lenis smooth scroll
+        }
+
+        // Close when clicking outside modal content
+        window.onclick = function (event) {
+            if (event.target == quoteModal) {
+                closeQuoteModal();
+            }
+            if (event.target == socialModal) {
+                closeSocialModal();
+            }
+            if (event.target == webModal) {
+                closeWebModal();
+            }
+        }
+
+        const scriptURL = "https://script.google.com/macros/s/AKfycbxpsmKj8r6Qr-x6iDdOWo4sbss5qQJrC1PZKVpDzmzyQmOjvtIEBBQVcL5qrVDC3rvhEA/exec";
+
+        if (webForm) {
+            webForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('web-name').value.trim();
+                const email = document.getElementById('web-email').value.trim();
+                const phone = document.getElementById('web-phone').value.trim();
+                const brand = document.getElementById('web-brand').value.trim();
+                const type = document.getElementById('web-type').value.trim();
+                const pages = document.getElementById('web-pages').value.trim();
+                const responsive = document.getElementById('web-responsive').value;
+                const styling = document.getElementById('web-styling').value;
+                const details = document.getElementById('web-details').value.trim();
+                const submitBtn = webForm.querySelector('button[type="submit"]');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                webMessage.style.color = 'var(--accent-gold)';
+                webMessage.textContent = 'Saving request details...';
+
+                const whatsappNumber = "919110707247";
+                const whatsappText = `*Web Design Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Business:* ${brand}\n*Type:* ${type}\n*Pages:* ${pages}\n*Responsive:* ${responsive}\n*Styling:* ${styling}\n\n*Project Details:*\n${details}`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        Name: name,
+                        email: email,
+                        Email: email,
+                        phone: phone,
+                        Phone: phone,
+                        service: "Web Designing",
+                        Service: "Web Designing",
+                        business: brand,
+                        Business: brand,
+                        details: `Type: ${type}\nPages: ${pages}\nResponsive: ${responsive}\nStyling: ${styling}\nDetails: ${details}`,
+                        Details: `Type: ${type}\nPages: ${pages}\nResponsive: ${responsive}\nStyling: ${styling}\nDetails: ${details}`
+                    })
+                })
+                .then(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Web Design Quote';
+                    webMessage.style.color = '#4CAF50';
+                    webMessage.textContent = 'Saved! Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    webForm.reset();
+                    
+                    setTimeout(() => {
+                        closeWebModal();
+                        webMessage.textContent = '';
+                    }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Web Design Quote';
+                    webMessage.style.color = 'orange';
+                    webMessage.textContent = 'Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    webForm.reset();
+                    
+                    setTimeout(() => {
+                        closeWebModal();
+                        webMessage.textContent = '';
+                    }, 1500);
+                });
+            });
+        }
+
+        if (socialForm) {
+            socialForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('social-name').value.trim();
+                const email = document.getElementById('social-email').value.trim();
+                const phone = document.getElementById('social-phone').value.trim();
+                const brand = document.getElementById('social-brand').value.trim();
+                const marketing = document.getElementById('social-marketing').value;
+                const details = document.getElementById('social-details').value.trim();
+                const submitBtn = socialForm.querySelector('button[type="submit"]');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                socialMessage.style.color = 'var(--accent-gold)';
+                socialMessage.textContent = 'Saving request details...';
+
+                const whatsappNumber = "919110707247";
+                const whatsappText = `*Social Media Kit Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Brand/Business:* ${brand}\n*Needs Digital Marketing:* ${marketing}\n\n*Project Details:*\n${details}`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        Name: name,
+                        email: email,
+                        Email: email,
+                        phone: phone,
+                        Phone: phone,
+                        service: "Social Media Kit",
+                        Service: "Social Media Kit",
+                        business: brand,
+                        Business: brand,
+                        details: `Digital Marketing: ${marketing}\nDetails: ${details}`,
+                        Details: `Digital Marketing: ${marketing}\nDetails: ${details}`
+                    })
+                })
+                .then(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Social Media Quote';
+                    socialMessage.style.color = '#4CAF50';
+                    socialMessage.textContent = 'Saved! Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    socialForm.reset();
+                    
+                    setTimeout(() => {
+                        closeSocialModal();
+                        socialMessage.textContent = '';
+                    }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Social Media Quote';
+                    socialMessage.style.color = 'orange';
+                    socialMessage.textContent = 'Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    socialForm.reset();
+                    
+                    setTimeout(() => {
+                        closeSocialModal();
+                        socialMessage.textContent = '';
+                    }, 1500);
+                });
+            });
+        }
+
+        if (quoteForm) {
+            quoteForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('quote-name').value.trim();
+                const email = document.getElementById('quote-email').value.trim();
+                const phone = document.getElementById('quote-phone').value.trim();
+                const brand = document.getElementById('quote-brand').value.trim();
+                const details = document.getElementById('quote-details').value.trim();
+                const submitBtn = quoteForm.querySelector('button[type="submit"]');
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                quoteMessage.style.color = 'var(--accent-gold)';
+                quoteMessage.textContent = 'Saving request details...';
+
+                const whatsappNumber = "919110707247";
+                const whatsappText = `*Brand Identity Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Brand/Business:* ${brand}\n\n*Project Details:*\n${details}`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'text/plain'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        Name: name,
+                        email: email,
+                        Email: email,
+                        phone: phone,
+                        Phone: phone,
+                        service: "Brand Identity",
+                        Service: "Brand Identity",
+                        business: brand,
+                        Business: brand,
+                        details: details,
+                        Details: details
+                    })
+                })
+                .then(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Brand Quote';
+                    quoteMessage.style.color = '#4CAF50';
+                    quoteMessage.textContent = 'Saved! Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    quoteForm.reset();
+                    
+                    setTimeout(() => {
+                        closeQuoteModal();
+                        quoteMessage.textContent = '';
+                    }, 1500);
+                })
+                .catch(error => {
+                    console.error('Error submitting form:', error);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Get My Brand Quote';
+                    quoteMessage.style.color = 'orange';
+                    quoteMessage.textContent = 'Opening WhatsApp...';
+                    
+                    window.open(whatsappUrl, '_blank');
+                    quoteForm.reset();
+                    
+                    setTimeout(() => {
+                        closeQuoteModal();
+                        quoteMessage.textContent = '';
+                    }, 1500);
+                });
+            });
+        }
+    </script>
+</body>
+
+</html>

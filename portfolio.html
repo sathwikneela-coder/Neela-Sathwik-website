@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Sathwik Neela</title>
+    <meta name="description" content="Explore the creative design and video editing portfolio of Sathwik Neela, showcasing stunning brand identities, flyers, cinematic event reels, and custom websites.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), var(--bg-primary));
+        }
+
+        .category-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Portfolio Grids */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+            cursor: pointer;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+            opacity: 0.8;
+            position: relative;
+            z-index: 0;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+            opacity: 0;
+        }
+
+        .card-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .project-card:hover .card-video {
+            opacity: 1;
+        }
+
+        .project-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(2, 2, 4, 0.65) 0%, transparent 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition);
+            z-index: 2;
+        }
+
+        .project-card:hover .project-info {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .click-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.4rem;
+            background: rgba(8, 8, 12, 0.75);
+            border: 1px solid var(--card-border, rgba(0, 225, 255, 0.25));
+            border-radius: 30px;
+            color: #fff;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px 0 var(--card-glow, rgba(0, 225, 255, 0.1)), inset 0 0 8px rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .project-card:hover .click-btn {
+            border-color: var(--card-accent, var(--accent-blue));
+            box-shadow: 0 8px 20px var(--card-glow, rgba(0, 225, 255, 0.35)), inset 0 0 8px rgba(255, 255, 255, 0.1);
+            background: rgba(8, 8, 12, 0.9);
+        }
+
+        .click-btn i {
+            font-size: 0.8rem;
+            color: var(--card-accent, var(--accent-blue));
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-card:hover .click-btn i {
+            transform: translateX(4px);
+        }
+
+        /* Dynamic Theme Accents for Each Card */
+        .project-card:nth-child(1) {
+            --card-glow: rgba(212, 175, 55, 0.2);
+            --card-accent: var(--accent-gold);
+            --card-border: rgba(212, 175, 55, 0.3);
+        }
+
+        .project-card:nth-child(2) {
+            --card-glow: rgba(106, 0, 244, 0.2);
+            --card-accent: var(--accent-violet);
+            --card-border: rgba(106, 0, 244, 0.3);
+        }
+
+        .project-card:nth-child(3) {
+            --card-glow: rgba(0, 225, 255, 0.2);
+            --card-accent: var(--accent-blue);
+            --card-border: rgba(0, 225, 255, 0.3);
+        }
+
+        .project-card:nth-child(4) {
+            --card-glow: rgba(255, 0, 122, 0.2);
+            --card-accent: var(--accent-magenta);
+            --card-border: rgba(255, 0, 122, 0.3);
+        }
+
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader">
+        <div class="preloader-logo">SATHWIK.</div>
+        <div class="preloader-progress">
+            <div class="preloader-bar"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">Selected <span>Works</span></h1>
+            <p class="page-subtitle">A curated collection of my best projects across graphic design.</p>
+        </div>
+    </header>
+
+    <!-- Graphic Design Projects -->
+    <section class="section">
+        <div class="container">
+            <h2 class="category-title reveal">Graphic Design</h2>
+            <div class="grid">
+                <!-- Card 1 -->
+                <a href="logos.html" class="project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/logo.png" alt="Logos">
+                    <video src="Videos/Logo.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="project-info">
+                        <span class="click-btn">Click Here <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <!-- Card 2 -->
+                <a href="creative-flyers.html" class="project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/Flyers.png" alt="Creative Flyers">
+                    <video src="Videos/Flyers.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="project-info">
+                        <span class="click-btn">Click Here <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <!-- Card 3 -->
+                <a href="motion-graphics.html" class="project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/Video editing.png" alt="Motion Graphics &amp; Video Editing">
+                    <video src="Videos/Video editing.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="project-info">
+                        <span class="click-btn">Click Here <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+                <!-- Card 4 -->
+                <a href="websites.html" class="project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/Weding.png" alt="Websites">
+                    <video src="Videos/Weding.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="project-info">
+                        <span class="click-btn">Click Here <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Call to action inside portfolio -->
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <div class="glass-card reveal">
+                <h2>Like what you see?</h2>
+                <p style="margin: 1rem 0 2rem; color: var(--text-secondary);">Let's discuss how we can create something
+                    amazing together.</p>
+                <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+                <div style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="https://drive.google.com/drive/folders/1p56un44_576QA9obcMUda6BfY0iKGMBJ" target="_blank"
+                        class="btn btn-outline"><i class="fab fa-google-drive" style="margin-right: 0.5rem;"></i>Google
+                        Drive</a>
+                    <a href="https://behance.net/sathwikneela" target="_blank" class="btn btn-outline"><i
+                            class="fab fa-behance" style="margin-right: 0.5rem;"></i>Behance</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

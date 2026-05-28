@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaddam's Photography | Premium Cinematic Portfolio</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Premium cinematic photography studio specializing in weddings, portraits, events, and fashion. Capturing Moments. Creating Timeless Memories.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loader" class="loader-overlay">
+        <div class="loader-brand">
+            <h1>Gaddam's<br><span>Photography</span></h1>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background Gradients -->
+    <div class="bg-gradients">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <img src="images/Logo/Logo.png" alt="Gaddam's Photography">
+            </a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="#contact" class="btn btn-outline nav-cta">Book a Shoot</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-slideshow">
+            <!-- Using images from local folder -->
+            <div class="slide active" style="background-image: url('images/Wedding/sean-williams-d-jyMeP6uNQ-unsplash.jpg');"></div>
+            <div class="slide" style="background-image: url('images/Fashion/bulbul-ahmed-p_LzoHuzZck-unsplash.jpg');"></div>
+            <div class="slide" style="background-image: url('images/Pre-Wedding/ikshana-productions-JbN_mvDdM_M-unsplash.jpg');"></div>
+            <div class="hero-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h5 class="hero-subtitle">Premium Photography Studio</h5>
+            <h1 class="hero-title">Gaddam's<br>Photography</h1>
+            <p class="hero-tagline">Capturing Moments. Creating Timeless Memories.</p>
+            <div class="hero-actions">
+                <a href="#portfolio" class="btn btn-primary">View Portfolio</a>
+                <a href="#contact" class="btn btn-secondary">Book a Shoot</a>
+            </div>
+        </div>
+        
+        <!-- Floating Element Decor -->
+        <div class="floating-decor fd-1 parallax" data-speed="0.05">
+            <img src="images/Portraits/pavel-abramiankou-QJTr7m981lg-unsplash.jpg" alt="Decor">
+        </div>
+        <div class="floating-decor fd-2 parallax" data-speed="-0.03">
+            <img src="images/Events/al-kaium-SygiaBayJTc-unsplash.jpg" alt="Decor">
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="container about-grid">
+            <div class="about-image-wrapper">
+                <img src="images/Outdoor Shoots/behrouz-sasani-8DWpmdzYKMQ-unsplash.jpg" alt="Photographer" class="about-img reveal-left">
+                <div class="experience-badge parallax" data-speed="0.08">
+                    <span class="number">5+</span>
+                    <span class="text">Years<br>Experience</span>
+                </div>
+            </div>
+            <div class="about-content reveal-right">
+                <h2 class="section-title">The Art of Visual<br><span>Storytelling</span></h2>
+                <p>At Gaddam's Photography, we believe photography is more than just taking pictures — it is about capturing emotions, memories, and the beauty of every moment.</p>
+                <p>With a passion for visual storytelling and a keen eye for detail, we create photographs that feel natural, timeless, and meaningful. From weddings and portraits to events and fashion shoots, every photograph reflects creativity, elegance, and passion.</p>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <i data-lucide="users" class="stat-icon"></i>
+                        <h4>200+</h4>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="aperture" class="stat-icon"></i>
+                        <h4>Cinematic</h4>
+                        <p>Photography Style</p>
+                    </div>
+                    <div class="stat-item">
+                        <i data-lucide="sliders" class="stat-icon"></i>
+                        <h4>Professional</h4>
+                        <p>Editing & Retouching</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery -->
+    <section id="portfolio" class="section portfolio-section">
+        <div class="container">
+            <div class="section-header text-center reveal-fade">
+                <h2 class="section-title">Our Masterpieces</h2>
+                <p>A curated collection of our finest cinematic photography.</p>
+            </div>
+            
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="wedding">Wedding</button>
+                <button class="filter-btn" data-filter="pre-wedding">Pre-Wedding</button>
+                <button class="filter-btn" data-filter="portrait">Portrait</button>
+                <button class="filter-btn" data-filter="fashion">Fashion</button>
+                <button class="filter-btn" data-filter="events">Events</button>
+            </div>
+
+            <div class="masonry-grid">
+                <!-- Wedding -->
+                <div class="masonry-item wedding reveal-fade">
+                    <img src="images/Wedding/arto-suraj-jWBxlyVZ3bg-unsplash.jpg" alt="Wedding">
+                    <div class="item-overlay"><span class="item-category">Wedding</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Pre-Wedding -->
+                <div class="masonry-item pre-wedding reveal-fade">
+                    <img src="images/Pre-Wedding/jd-photography-ZLcDqQzaclU-unsplash.jpg" alt="Pre-Wedding">
+                    <div class="item-overlay"><span class="item-category">Pre-Wedding</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Portrait -->
+                <div class="masonry-item portrait reveal-fade">
+                    <img src="images/Portraits/pranjal-kumar-a2l3xKLMRWM-unsplash.jpg" alt="Portrait">
+                    <div class="item-overlay"><span class="item-category">Portrait</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Fashion -->
+                <div class="masonry-item fashion reveal-fade">
+                    <img src="images/Fashion/bulbul-ahmed-60xSSwxiyao-unsplash.jpg" alt="Fashion">
+                    <div class="item-overlay"><span class="item-category">Fashion</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Events -->
+                <div class="masonry-item events reveal-fade">
+                    <img src="images/Events/alex-george-6Tiv6fHOJg0-unsplash.jpg" alt="Event">
+                    <div class="item-overlay"><span class="item-category">Event</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Wedding 2 -->
+                <div class="masonry-item wedding reveal-fade">
+                    <img src="images/Wedding/manish_-jadhav_photography05-jw_V_GSB4hw-unsplash.jpg" alt="Wedding">
+                    <div class="item-overlay"><span class="item-category">Wedding</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Pre-Wedding 2 -->
+                <div class="masonry-item pre-wedding reveal-fade">
+                    <img src="images/Pre-Wedding/sb-film-studio-ADujNM4QyAk-unsplash.jpg" alt="Pre-Wedding">
+                    <div class="item-overlay"><span class="item-category">Pre-Wedding</span><i data-lucide="zoom-in"></i></div>
+                </div>
+                <!-- Outdoor -->
+                <div class="masonry-item portrait reveal-fade">
+                    <img src="images/Outdoor Shoots/kato-blackmore-QucAx18pcSc-unsplash.jpg" alt="Outdoor">
+                    <div class="item-overlay"><span class="item-category">Portrait</span><i data-lucide="zoom-in"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work Slider -->
+    <section class="featured-section section">
+        <div class="featured-slider" id="featuredSlider">
+            <div class="f-slide active">
+                <img src="images/Wedding/sean-williams-d-jyMeP6uNQ-unsplash.jpg" alt="Featured 1">
+                <div class="f-overlay"></div>
+                <div class="f-content container">
+                    <div class="f-meta">Hyderabad | 2025</div>
+                    <h3 class="f-title">Royal Wedding Shoot</h3>
+                    <p class="f-desc">A grand celebration of love, captured with dramatic lighting and timeless elegance.</p>
+                </div>
+            </div>
+            <div class="f-slide">
+                <img src="images/Fashion/bulbul-ahmed-p_LzoHuzZck-unsplash.jpg" alt="Featured 2">
+                <div class="f-overlay"></div>
+                <div class="f-content container">
+                    <div class="f-meta">Studio | Editorial</div>
+                    <h3 class="f-title">High Fashion Editorial</h3>
+                    <p class="f-desc">Bold styling meets cinematic lighting in this modern fashion editorial series.</p>
+                </div>
+            </div>
+            <div class="f-slide">
+                <img src="images/Pre-Wedding/ikshana-productions-JbN_mvDdM_M-unsplash.jpg" alt="Featured 3">
+                <div class="f-overlay"></div>
+                <div class="f-content container">
+                    <div class="f-meta">Kerala | Golden Hour</div>
+                    <h3 class="f-title">Sunset Romance</h3>
+                    <p class="f-desc">A breathtaking pre-wedding romance captured at the magical golden hour.</p>
+                </div>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button class="slider-btn prev-btn"><i data-lucide="chevron-left"></i></button>
+            <button class="slider-btn next-btn"><i data-lucide="chevron-right"></i></button>
+        </div>
+    </section>
+
+    <!-- Video Showcase Section -->
+    <section class="section video-section">
+        <div class="container text-center reveal-fade">
+            <h2 class="section-title">Cinematic Reels</h2>
+            <p style="margin-bottom: 40px;">Experience our visual storytelling in motion.</p>
+            
+            <div class="video-container">
+                <!-- Fallback image acting as video cover since actual videos aren't present -->
+                <img src="images/Wedding/arto-suraj-jWBxlyVZ3bg-unsplash.jpg" alt="Video Cover" class="video-cover">
+                <div class="play-btn">
+                    <i data-lucide="play" fill="currentColor"></i>
+                </div>
+                <div class="video-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section services-section">
+        <div class="container">
+            <div class="section-header text-center reveal-fade">
+                <h2 class="section-title">Our Services</h2>
+                <p>Professional photography services tailored to your specific needs.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card reveal-up" style="transition-delay: 0.1s">
+                    <div class="service-icon"><i data-lucide="heart"></i></div>
+                    <h3>Wedding Photography</h3>
+                    <p>Comprehensive coverage of your special day, from bridal portraits to spectacular reception moments.</p>
+                </div>
+                <div class="service-card reveal-up" style="transition-delay: 0.2s">
+                    <div class="service-icon"><i data-lucide="image"></i></div>
+                    <h3>Pre-Wedding Shoots</h3>
+                    <p>Cinematic storytelling of your love journey, set in breathtaking romantic locations.</p>
+                </div>
+                <div class="service-card reveal-up" style="transition-delay: 0.3s">
+                    <div class="service-icon"><i data-lucide="user"></i></div>
+                    <h3>Portrait Sessions</h3>
+                    <p>Elegant professional posing, perfect lighting, and premium retouching for fine art portraits.</p>
+                </div>
+                <div class="service-card reveal-up" style="transition-delay: 0.4s">
+                    <div class="service-icon"><i data-lucide="camera"></i></div>
+                    <h3>Event Photography</h3>
+                    <p>Discreet and comprehensive photojournalistic coverage of high-profile private and corporate events.</p>
+                </div>
+                <div class="service-card reveal-up" style="transition-delay: 0.5s">
+                    <div class="service-icon"><i data-lucide="star"></i></div>
+                    <h3>Fashion Photography</h3>
+                    <p>Editorial and commercial fashion photography for brands, models, and designers.</p>
+                </div>
+                <div class="service-card reveal-up" style="transition-delay: 0.6s">
+                    <div class="service-icon"><i data-lucide="briefcase"></i></div>
+                    <h3>Commercial Shoots</h3>
+                    <p>High-end product and branding photography designed to elevate your business presence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Section -->
+    <section class="section insta-section">
+        <div class="container text-center reveal-fade">
+            <h2 class="section-title">Follow The Journey</h2>
+            <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-link">@gaddams_photography</a>
+            
+            <div class="insta-grid">
+<!-- Events -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Events/al-kaium-SygiaBayJTc-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Events/alex-george-6Tiv6fHOJg0-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Events/arun-prakash-pTafL9AxEDg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Events/atelierbyvineeth-q3RUJrGm8qg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Events/pranav-kumar-jain-MW0q7zt0OYU-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+<!-- Fashion -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/bulbul-ahmed-60xSSwxiyao-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/bulbul-ahmed-7suvBb4CZtQ-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/bulbul-ahmed-p_LzoHuzZck-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/dhruv-vishwakarma-GoagZ4LVSfo-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/dhruv-vishwakarma-ZIScMboV_YY-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Fashion/vivek-baghel-Zx3ZNc1Vpkk-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+<!-- Portraits -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/a-b-Av-GD7uudoI-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/ins-vikrant-5OwOnRqO-Nw-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/ins-vikrant-yy_63IAGhsY-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/iulian-sandu-ExIMR5CS71w-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/pavel-abramiankou-QJTr7m981lg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/pranjal-kumar-a2l3xKLMRWM-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Portraits/wasif-mujahid-bl_xeEofvQ4-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+<!-- Outdoor Shoots -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/behrouz-sasani-8DWpmdzYKMQ-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/behrouz-sasani-uIA3NyJkpew-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/jonath-jo-hU5qUuzVFtg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/kato-blackmore-QucAx18pcSc-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/mahdi-chaghari-Kizl1FM48nw-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Outdoor Shoots/troy-wade-x3-pqeYUg44-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+<!-- Pre-Wedding -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/ikshana-productions-JbN_mvDdM_M-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/ikshana-productions-SHFOaVaVe2A-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/impulse-dreamlight-ysFT5e3b_cw-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/jd-photography-UhxNTx60WR8-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/jd-photography-ZLcDqQzaclU-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/jd-photography-ir3OvdI8X40-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/laura-oliveira-09jnRUUHlQw-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/laura-oliveira-ziavtoPTiT8-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/saeed-arab-2Ba7c1jvIog-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Pre-Wedding/sb-film-studio-ADujNM4QyAk-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+<!-- Wedding -->
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/aastha-bansal-W1wkx5kcaBk-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/al-kaium-2WF2ijmdOMg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/arto-suraj-jWBxlyVZ3bg-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/arto-suraj-shqK5G-J-Ac-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/arun-prakash-tfDKc3e7LNc-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/ashwini-chaudhary-monty-9gUvnFDE86o-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/love-arya-SUwPo4ErQCc-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/manish_-jadhav_photography05-jw_V_GSB4hw-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/mohammed-sultan-farooqui-NAHubLrNZk0-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank" class="insta-item">
+                    <img src="images/Wedding/sean-williams-d-jyMeP6uNQ-unsplash.jpg" alt="Insta">
+                    <div class="insta-overlay"><i data-lucide="instagram"></i></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section">
+        <div class="container">
+            <div class="section-header text-center reveal-fade">
+                <h2 class="section-title">Client Love</h2>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card reveal-up">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i>
+                    </div>
+                    <p class="t-text">"Absolutely amazing photography! Every moment was captured perfectly. The photos look stunning and natural. The team made us feel so comfortable during our pre-wedding shoot."</p>
+                    <h5 class="t-author">- Priya & Rahul</h5>
+                </div>
+                <div class="testimonial-card reveal-up" style="transition-delay: 0.2s">
+                    <div class="stars">
+                        <i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i><i data-lucide="star" fill="currentColor"></i>
+                    </div>
+                    <p class="t-text">"Very professional and creative photographer. Highly recommended for weddings and events. The cinematic quality of our wedding video exceeded all expectations!"</p>
+                    <h5 class="t-author">- Sameer Reddy</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <h2 class="section-title" style="text-align: left;">Let's Create<br>Something Beautiful.</h2>
+                    <p style="margin-bottom: 40px; color: var(--text-muted);">Ready to book your shoot or have a question? Reach out to us and our team will get back to you shortly.</p>
+                    
+                    <div class="info-items">
+                        <div class="info-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Narsapur, Nirmal, Telangana</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+91 900039596</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>sphotography@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <a href="https://wa.me/91900039596" class="btn btn-primary" style="background-color: #25D366; color: #fff; border: none; display: inline-flex; align-items: center; gap: 10px;">
+                            <i data-lucide="message-circle"></i> Book on WhatsApp
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-wrapper reveal-right">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Your Phone" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="4" placeholder="Tell us about your shoot..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Embedded -->
+    <div class="map-container reveal-fade">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m2!1s0x3bd08f2e2d9a3b83%3A0xf65fb1ca13b0c5cb!2sNarsapur%20(G)%2C%20Telangana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <a href="#" class="footer-logo">
+                <img src="images/Logo/Logo.png" alt="Gaddam's Logo">
+            </a>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/gaddams_photography/" target="_blank"><i data-lucide="instagram"></i></a>
+                <a href="https://wa.me/91900039596" target="_blank"><i data-lucide="message-circle"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom text-center">
+            <p>&copy; 2026 Gaddam's Photography | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <!-- Fullscreen Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="lightbox-close"><i data-lucide="x"></i></span>
+        <img src="" alt="Fullscreen image" class="lightbox-img" id="lightbox-img">
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sathwik Neela | Graphic Designer & Video Editor</title>
+    <meta name="description"
+        content="Portfolio of Sathwik Neela, a professional Graphic Designer and Cinematic Video Editor.">
+    <!-- Fonts and Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Hero Section Styling specific to Home */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, var(--bg-primary) 70%);
+            text-align: center;
+            padding-top: 80px;
+            /* Accounts for navbar */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/hero-bg.jpg') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: -1;
+            filter: blur(2px);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* Skills Highlights */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2.5rem 2rem;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.4));
+        }
+
+        .skill-item h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .skill-item p {
+            color: var(--text-secondary);
+        }
+
+        /* About Preview */
+        .about-preview {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .about-preview-img {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .about-preview-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), transparent);
+            pointer-events: none;
+        }
+
+        .about-preview-content {
+            flex: 1;
+        }
+
+        .about-preview-content h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .about-preview-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Portfolio Preview */
+        .portfolio-preview {
+            background: var(--bg-secondary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.1);
+            opacity: 0;
+        }
+
+        .card-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .portfolio-card:hover .card-video {
+            opacity: 1;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 5, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay span {
+            color: var(--accent-gold);
+            transform: translateY(20px);
+            transition: var(--transition);
+            transition-delay: 0.1s;
+        }
+
+        .portfolio-card:hover .portfolio-overlay h3,
+        .portfolio-card:hover .portfolio-overlay span {
+            transform: translateY(0);
+        }
+
+        /* CTA Banner */
+        .cta-banner {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(45deg, var(--bg-secondary), var(--bg-primary));
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .cta-banner h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+
+        /* Animated Particles/Orbs in Hero */
+        .hero-bg-animated {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .orb-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--accent-gold);
+            top: 10%;
+            left: 20%;
+            animation-duration: 12s;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: #2a2a2a;
+            bottom: 10%;
+            right: 20%;
+            animation-delay: -5s;
+            animation-duration: 15s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(50px, 30px) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-30px, 50px) scale(0.9);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .about-preview {
+                flex-direction: column;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .orb {
+                display: none;
+            }
+
+            /* Hide orbs on mobile to improve performance */
+        }
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader"><div class="preloader-logo">SATHWIK.</div><div class="preloader-progress"><div class="preloader-bar"></div></div></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" style="overflow: hidden;">
+        <div class="hero-bg-animated">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+        <div class="container hero-content">
+            <div class="hero-subtitle reveal">Sathwik Neela</div>
+            <h1 class="hero-title reveal">Designing Visual Stories That Captivate & Convert</h1>
+            <p class="hero-desc reveal">Graphic Designer • Video Editor • AI Prompt Engineer</p>
+            <div class="cta-group reveal">
+                <a href="portfolio.html" class="btn btn-primary">View Work</a>
+                <a href="contact.html" class="btn btn-outline">Hire Me</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Highlights -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title reveal">Core <span>Expertise</span></h2>
+            <div class="skills-grid">
+                <div class="glass-card skill-item reveal">
+                    <i class="fas fa-bezier-curve skill-icon"></i>
+                    <h3>Graphic Design</h3>
+                    <p>Crafting stunning brand identities, social media assets, and digital illustrations with
+                        pixel-perfect precision.</p>
+                </div>
+                <div class="glass-card skill-item reveal">
+                    <i class="fas fa-film skill-icon"></i>
+                    <h3>Cinematic Video Editing</h3>
+                    <p>Transforming raw footage into compelling narratives with dynamic color grading, sound design, and
+                        VFX.</p>
+                </div>
+                <div class="glass-card skill-item reveal">
+                    <i class="fas fa-magic skill-icon"></i>
+                    <h3>Creative Direction</h3>
+                    <p>Guiding visual aesthetics from concept to final delivery, ensuring impactful and cohesive
+                        storytelling.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Preview -->
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container about-preview">
+            <div class="about-preview-img reveal">
+                <!-- Using the same premium self image for visual brand consistency -->
+                <img src="My image/My self.png" style="width:100%; height:100%; object-fit: cover; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,225,255,0.2);" alt="Sathwik Neela Creative Mind">
+            </div>
+            <div class="about-preview-content reveal">
+                <div class="hero-subtitle">Who I Am</div>
+                <h2>Creative Design & Visual Storytelling</h2>
+                <p>I am a creative graphic designer and video editor who helps bring ideas to life through design and
+                    visual storytelling. I continuously explore new tools, trends, and AI technologies to improve my
+                    work.</p>
+                <a href="about.html" class="btn btn-outline">Read Full Story</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Portfolio Preview -->
+    <section class="section portfolio-preview">
+        <div class="container">
+            <h2 class="section-title reveal">Selected <span>Works</span></h2>
+            <div class="portfolio-grid">
+                <!-- Card 1: Logos -->
+                <a href="logos.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/logo.png" alt="Logos Brand Identity Showcase">
+                    <video src="Videos/Logo.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="portfolio-overlay" style="z-index: 2;">
+                        <h3>Logos</h3>
+                        <span>Brand Identity</span>
+                    </div>
+                </a>
+                <!-- Card 2: Creative Flyers -->
+                <a href="creative-flyers.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/Flyers.png" alt="Creative Flyers Showcase">
+                    <video src="Videos/Flyers.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="portfolio-overlay" style="z-index: 2;">
+                        <h3>Creative Flyers</h3>
+                        <span>Graphic Design</span>
+                    </div>
+                </a>
+                <!-- Card 3: Cinematic Reel -->
+                <a href="motion-graphics.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
+                    <img src="images/Video editing.png" alt="Motion Graphics & Video Editing Showcase">
+                    <video src="Videos/Video editing.mp4" muted loop playsinline preload="auto" class="card-video"></video>
+                    <div class="portfolio-overlay" style="z-index: 2;">
+                        <h3>Cinematic Reel</h3>
+                        <span>Video Editing</span>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;" class="reveal">
+                <a href="portfolio.html" class="btn btn-primary">Explore Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner reveal">
+        <div class="container">
+            <h2>Ready to elevate your visual presence?</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 1.2rem;">Let's collaborate and bring
+                your ideas to life.</p>
+            <a href="contact.html" class="btn btn-primary">Start a Project</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

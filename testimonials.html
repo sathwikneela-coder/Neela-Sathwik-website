@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en" class="lenis">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials | Sathwik Neela</title>
+    <meta name="description" content="Read authentic client feedback and testimonials about Sathwik Neela's exceptional graphic design, branding, and video editing work.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .page-header {
+            padding: 150px 0 50px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(212, 175, 55, 0.05), var(--bg-primary));
+        }
+
+        .slider-container {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem 0;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            min-height: 350px;
+        }
+
+        .testimonial-slide {
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .testimonial-slide.active {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: all;
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .client-avatar {
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            overflow: hidden;
+        }
+
+        .client-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+            background: #ffffff;
+            padding: 5px;
+        }
+
+        .client-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .client-details span {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Slider Dots */
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--glass-border);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active, .dot:hover {
+            background: var(--accent-gold);
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .testimonial-text { font-size: 1.1rem; }
+            .testimonial-slide { padding: 1.5rem; }
+        }
+    </style>
+    <!-- GSAP & Lenis & Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+</head>
+<body>
+    <div id="webgl-container"></div>
+    <div id="preloader"><div class="preloader-logo">SATHWIK.</div><div class="preloader-progress"><div class="preloader-bar"></div></div></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">Sathwik<span>.</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="testimonials.html" class="active">Testimonials</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="page-header">
+        <div class="container reveal">
+            <h1 class="page-title">Client <span>Praise</span></h1>
+            <p class="page-subtitle">What people say about working with me and the visual experiences we've created.</p>
+        </div>
+    </header>
+
+    <!-- Testimonial Slider Section -->
+    <section class="section">
+        <div class="container">
+            <div class="slider-container reveal">
+                <div class="testimonial-slider">
+                    
+                    <!-- Slide 1 -->
+                    <div class="glass-card testimonial-slide active">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Sathwik transformed our brand presence with premium and professional creative designs. Every project he delivered reflected quality, trust, and modern aesthetics. His dedication, creativity, and attention to detail helped our construction brand stand out digitally."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/SVK.png" alt="Sri Vishwakarma Constructions Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Sri Vishwakarma Constructions</h4>
+                                <span>Construction & Real Estate Brand</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"The visuals and promotional creatives designed by Sathwik gave our restaurant a completely fresh and premium identity online. His food poster designs are cinematic, attractive, and highly engaging for customers."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Devi.png" alt="Devi Restaurant Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Devi Restaurant</h4>
+                                <span>Restaurant & Food Promotions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Sathwik perfectly captured the elegance and beauty of our floral business through his creative designs. Every poster looked classy, vibrant, and professionally crafted."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Sree Vasavi Flowers.png" alt="Sree Vaasavi Flowers Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Sree Vaasavi Flowers</h4>
+                                <span>Floral & Event Decorations</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"The marketing creatives designed by Sathwik helped us present our products in a modern and attractive way. His designs are clean, impactful, and visually memorable."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Shkathi.png" alt="Shakti Foods Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Shakti Foods</h4>
+                                <span>Food Products & Branding</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Sathwik created professional educational promotions that connected well with students and parents. His designs maintained the perfect balance between creativity and clarity."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Narendra.png" alt="Narendra Junior College Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Narendra Junior College</h4>
+                                <span>Educational Institution</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 6 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"The festival campaigns and promotional posters created by Sathwik gave our salon a premium and stylish digital presence. His cinematic editing and modern design style are truly impressive."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Rock sallon.png" alt="Roffe Salon and Men's Spa Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Roffe Salon and Men's Spa</h4>
+                                <span>Salon & Grooming Brand</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 7 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Sathwik delivered high-quality real estate creatives that looked modern, trustworthy, and visually premium. His work added strong value to our marketing campaigns."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Prim.jpg" alt="PrimeEstates Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>PrimeEstates</h4>
+                                <span>Real Estate & Property Promotions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 8 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"The promotional visuals created by Sathwik helped us showcase our agri products professionally. His designs are creative, informative, and highly effective for digital promotions."</p>
+                        <div class="client-info">
+                            <div class="client-avatar" style="background: linear-gradient(135deg, #11998e, #38ef7d); border: 2px solid var(--accent-gold); overflow: hidden; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-seedling" style="color: #fff; font-size: 1.5rem;"></i>
+                            </div>
+                            <div class="client-details">
+                                <h4>Green Vision Agri Tech</h4>
+                                <span>Agriculture & Agri Solutions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 9 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Sathwik consistently delivered eye-catching offer posters and campaign creatives that attracted customer attention instantly. His work always feels modern and professionally executed."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/mandi 95.jpg" alt="Mandi@95 Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>Mandi@95</h4>
+                                <span>Retail & Market Promotions</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 10 -->
+                    <div class="glass-card testimonial-slide">
+                        <i class="fas fa-quote-left quote-icon"></i>
+                        <p class="testimonial-text">"Working with Sathwik was an excellent experience. His creative support and branding visuals helped us strengthen our online identity with a professional and premium appearance."</p>
+                        <div class="client-info">
+                            <div class="client-avatar">
+                                <img src="Clinet logos/Vsqure.jpg" alt="V Square Agro Farms Logo">
+                            </div>
+                            <div class="client-details">
+                                <h4>V Square Agro Farms</h4>
+                                <span>Agro & Farming Brand</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Slider Controls -->
+                <div class="slider-dots">
+                    <div class="dot active" onclick="showSlide(0)"></div>
+                    <div class="dot" onclick="showSlide(1)"></div>
+                    <div class="dot" onclick="showSlide(2)"></div>
+                    <div class="dot" onclick="showSlide(3)"></div>
+                    <div class="dot" onclick="showSlide(4)"></div>
+                    <div class="dot" onclick="showSlide(5)"></div>
+                    <div class="dot" onclick="showSlide(6)"></div>
+                    <div class="dot" onclick="showSlide(7)"></div>
+                    <div class="dot" onclick="showSlide(8)"></div>
+                    <div class="dot" onclick="showSlide(9)"></div>
+                </div>
+            </div>
+
+            <!-- Global Footer CTA inside Testimonials -->
+            <div style="text-align: center; margin-top: 5rem;" class="reveal">
+                <h2>Want to experience this for yourself?</h2>
+                <a href="https://wa.me/919110707247" target="_blank" class="btn btn-primary" style="margin-top: 2rem;"><i class="fab fa-whatsapp" style="margin-right: 0.5rem;"></i>Let's Talk</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <h2 class="logo" style="margin-bottom: 2rem;">Sathwik<span>.</span></h2>
+            <div class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="portfolio.html">Portfolio</a>
+                <a href="services.html">Services</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-behance"></i></a>
+                <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Sathwik Neela. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Testimonial Slider Logic
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+            resetInterval();
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % slides.length;
+            showSlide(next);
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Initialize auto slide
+        slideInterval = setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
