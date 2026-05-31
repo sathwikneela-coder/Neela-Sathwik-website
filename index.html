@@ -141,90 +141,7 @@
             font-size: 1.1rem;
         }
 
-        /* Portfolio Preview */
-        .portfolio-preview {
-            background: var(--bg-secondary);
-        }
 
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            cursor: pointer;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-
-        .portfolio-card:hover img {
-            transform: scale(1.1);
-            opacity: 0;
-        }
-
-        .card-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .portfolio-card:hover .card-video {
-            opacity: 1;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 5, 5, 0.8);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .portfolio-card:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-overlay h3 {
-            color: #fff;
-            margin-bottom: 0.5rem;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-
-        .portfolio-overlay span {
-            color: var(--accent-gold);
-            transform: translateY(20px);
-            transition: var(--transition);
-            transition-delay: 0.1s;
-        }
-
-        .portfolio-card:hover .portfolio-overlay h3,
-        .portfolio-card:hover .portfolio-overlay span {
-            transform: translateY(0);
-        }
 
         /* CTA Banner */
         .cta-banner {
@@ -405,44 +322,7 @@
         </div>
     </section>
 
-    <!-- Featured Portfolio Preview -->
-    <section class="section portfolio-preview">
-        <div class="container">
-            <h2 class="section-title reveal">Selected <span>Works</span></h2>
-            <div class="portfolio-grid">
-                <!-- Card 1: Logos -->
-                <a href="logos.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
-                    <img src="images/logo.png" alt="Logos Brand Identity Showcase">
-                    <video src="Videos/Logo.mp4" muted loop playsinline preload="auto" class="card-video"></video>
-                    <div class="portfolio-overlay" style="z-index: 2;">
-                        <h3>Logos</h3>
-                        <span>Brand Identity</span>
-                    </div>
-                </a>
-                <!-- Card 2: Creative Flyers -->
-                <a href="creative-flyers.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
-                    <img src="images/Flyers.png" alt="Creative Flyers Showcase">
-                    <video src="Videos/Flyers.mp4" muted loop playsinline preload="auto" class="card-video"></video>
-                    <div class="portfolio-overlay" style="z-index: 2;">
-                        <h3>Creative Flyers</h3>
-                        <span>Graphic Design</span>
-                    </div>
-                </a>
-                <!-- Card 3: Cinematic Reel -->
-                <a href="motion-graphics.html" class="portfolio-card project-card reveal" style="text-decoration: none; cursor: pointer;">
-                    <img src="images/Video editing.png" alt="Motion Graphics & Video Editing Showcase">
-                    <video src="Videos/Video editing.mp4" muted loop playsinline preload="auto" class="card-video"></video>
-                    <div class="portfolio-overlay" style="z-index: 2;">
-                        <h3>Cinematic Reel</h3>
-                        <span>Video Editing</span>
-                    </div>
-                </a>
-            </div>
-            <div style="text-align: center; margin-top: 3rem;" class="reveal">
-                <a href="portfolio.html" class="btn btn-primary">Explore Portfolio</a>
-            </div>
-        </div>
-    </section>
+
 
     <!-- CTA Banner -->
     <section class="cta-banner reveal">
