@@ -553,6 +553,8 @@
         </div>
     </div>
 
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
     <script src="js/script.js"></script>
     <script>
         const quoteModal = document.getElementById('quoteModal');
@@ -635,7 +637,10 @@
             }
         }
 
-        const scriptURL = "https://script.google.com/macros/s/AKfycbxpsmKj8r6Qr-x6iDdOWo4sbss5qQJrC1PZKVpDzmzyQmOjvtIEBBQVcL5qrVDC3rvhEA/exec";
+        const getContactApiUrl = () => {
+            const apiBaseUrl = (window.API_CONFIG && window.API_CONFIG.BASE_URL) ? window.API_CONFIG.BASE_URL : '';
+            return `${apiBaseUrl}/api/contact`;
+        };
 
         if (webForm) {
             webForm.addEventListener('submit', (e) => {
@@ -661,25 +666,18 @@
                 const whatsappText = `*Web Design Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Business:* ${brand}\n*Type:* ${type}\n*Pages:* ${pages}\n*Responsive:* ${responsive}\n*Styling:* ${styling}\n\n*Project Details:*\n${details}`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
-                fetch(scriptURL, {
+                fetch(getContactApiUrl(), {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'text/plain'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         name: name,
-                        Name: name,
                         email: email,
-                        Email: email,
                         phone: phone,
-                        Phone: phone,
                         service: "Web Designing",
-                        Service: "Web Designing",
                         business: brand,
-                        Business: brand,
-                        details: `Type: ${type}\nPages: ${pages}\nResponsive: ${responsive}\nStyling: ${styling}\nDetails: ${details}`,
-                        Details: `Type: ${type}\nPages: ${pages}\nResponsive: ${responsive}\nStyling: ${styling}\nDetails: ${details}`
+                        details: `Type: ${type}\nPages: ${pages}\nResponsive: ${responsive}\nStyling: ${styling}\nDetails: ${details}`
                     })
                 })
                 .then(() => {
@@ -697,7 +695,7 @@
                     }, 1500);
                 })
                 .catch(error => {
-                    console.error('Error submitting form:', error);
+                    console.error('Error submitting form to backend:', error);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Get My Web Design Quote';
                     webMessage.style.color = 'orange';
@@ -735,25 +733,18 @@
                 const whatsappText = `*Social Media Kit Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Brand/Business:* ${brand}\n*Needs Digital Marketing:* ${marketing}\n\n*Project Details:*\n${details}`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
-                fetch(scriptURL, {
+                fetch(getContactApiUrl(), {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'text/plain'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         name: name,
-                        Name: name,
                         email: email,
-                        Email: email,
                         phone: phone,
-                        Phone: phone,
                         service: "Social Media Kit",
-                        Service: "Social Media Kit",
                         business: brand,
-                        Business: brand,
-                        details: `Digital Marketing: ${marketing}\nDetails: ${details}`,
-                        Details: `Digital Marketing: ${marketing}\nDetails: ${details}`
+                        details: `Digital Marketing: ${marketing}\nDetails: ${details}`
                     })
                 })
                 .then(() => {
@@ -771,7 +762,7 @@
                     }, 1500);
                 })
                 .catch(error => {
-                    console.error('Error submitting form:', error);
+                    console.error('Error submitting form to backend:', error);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Get My Social Media Quote';
                     socialMessage.style.color = 'orange';
@@ -808,25 +799,18 @@
                 const whatsappText = `*Brand Identity Quote Request*\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Brand/Business:* ${brand}\n\n*Project Details:*\n${details}`;
                 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
 
-                fetch(scriptURL, {
+                fetch(getContactApiUrl(), {
                     method: 'POST',
-                    mode: 'no-cors',
                     headers: {
-                        'Content-Type': 'text/plain'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         name: name,
-                        Name: name,
                         email: email,
-                        Email: email,
                         phone: phone,
-                        Phone: phone,
                         service: "Brand Identity",
-                        Service: "Brand Identity",
                         business: brand,
-                        Business: brand,
-                        details: details,
-                        Details: details
+                        details: details
                     })
                 })
                 .then(() => {
@@ -844,7 +828,7 @@
                     }, 1500);
                 })
                 .catch(error => {
-                    console.error('Error submitting form:', error);
+                    console.error('Error submitting form to backend:', error);
                     submitBtn.disabled = false;
                     submitBtn.textContent = 'Get My Brand Quote';
                     quoteMessage.style.color = 'orange';

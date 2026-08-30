@@ -596,7 +596,7 @@ document.querySelectorAll('.glass-card, .portfolio-card, .project-card').forEach
   });
 });
 
-// Contact Form Legacy Wrapper
+// Contact Form Backend API Integration
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async (e) => {
@@ -622,27 +622,21 @@ if (contactForm) {
     const whatsappNumber = "919110707247";
     const whatsappText = `Hello Sathwik,\n\nI am ${name.value.trim()}.\nMy Email: ${email.value.trim()}\n\nMessage:\n${message.value.trim()}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxpsmKj8r6Qr-x6iDdOWo4sbss5qQJrC1PZKVpDzmzyQmOjvtIEBBQVcL5qrVDC3rvhEA/exec";
+    const apiBaseUrl = (window.API_CONFIG && window.API_CONFIG.BASE_URL) ? window.API_CONFIG.BASE_URL : '';
+    const contactApiUrl = `${apiBaseUrl}/api/contact`;
 
-    fetch(scriptURL, {
+    fetch(contactApiUrl, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-            'Content-Type': 'text/plain'
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify({
             name: name.value.trim(),
-            Name: name.value.trim(),
             email: email.value.trim(),
-            Email: email.value.trim(),
             phone: "",
-            Phone: "",
             service: "General Contact",
-            Service: "General Contact",
             business: "",
-            Business: "",
-            details: message.value.trim(),
-            Details: message.value.trim()
+            details: message.value.trim()
         })
     })
     .then(() => {
@@ -660,7 +654,7 @@ if (contactForm) {
         }, 2000);
     })
     .catch(error => {
-        console.error('Error submitting form:', error);
+        console.error('Error submitting form to backend:', error);
         if(formMessage) { formMessage.style.color = 'orange'; formMessage.textContent = 'Opening WhatsApp...'; }
         
         window.open(whatsappUrl, '_blank');
@@ -676,3 +670,4 @@ if (contactForm) {
     });
   });
 }
+
